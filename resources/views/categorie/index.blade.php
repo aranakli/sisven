@@ -10,14 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Listado de Categorias</title>
+    <title>Categories list</title>
 </head>
 
 <body>
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Categorias') }}
+                {{ __('Categories') }}
             </h2>
         </x-slot>
 
@@ -25,36 +25,36 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <a href="{{ route('categorias.create') }}"
+                        <a href="{{ route('categories.create') }}"
                             class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-2">Crear</a>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID categoría</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">Categorie ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Descrition</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categorias as $categoria)
+                                @foreach ($categories as $categorie)
                                     <tr>
-                                        <th scope="row">{{ $categoria->id }}</th>
-                                        <td>{{ $categoria->name }}</td>
-                                        <td>{{ $categoria->description }}</td>
+                                        <th scope="row">{{ $categorie->id }}</th>
+                                        <td>{{ $categorie->name }}</td>
+                                        <td>{{ $categorie->description }}</td>
                                         <td>
-                                            <a href="{{ route('categorias.edit', ['categoria' => $categoria->id]) }}"
+                                            <a href="{{ route('categories.edit', ['categorie' => $categorie->id]) }}"
                                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                                Editar </a></li>
+                                                Edit</a></li>
 
                                             <form
-                                                action="{{ route('categorias.destroy', ['categoria' => $categoria->id]) }}"
+                                                action="{{ route('categories.destroy', ['categorie' => $categorie->id]) }}"
                                                 method='POST' style="display: inline-block">
                                                 @method('delete')
                                                 @csrf
                                                 <input
                                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
-                                                    type="submit" value="Borrar">
+                                                    type="submit" value="Delete">
                                             </form>
                                         </td>
                                     </tr>
