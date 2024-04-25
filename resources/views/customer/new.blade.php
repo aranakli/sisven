@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
         <label for="document" class="form-label">Document Number</label>
-        <input type="text" required class="form-control" id="document" aria-describedby="nameHelp" name="document"
+        <input type="number" required class="form-control" id="document" aria-describedby="nameHelp" name="document"
         placeholder="Document number">
         </div>
         <div class="mb-3">
