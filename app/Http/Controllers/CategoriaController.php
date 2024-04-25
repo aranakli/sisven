@@ -25,7 +25,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        // Crear una nueva categoria
+        return view('categoria.new');
     }
 
     /**
@@ -33,7 +34,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Guarda los cambios de la categoria
+        //El codigo de la categoria  es autoincremental
+        $categoria = new Categoria();
+        $categoria->name = $request->name;
+        $categoria->description = $request->descripcion;
+        $categoria->save();
+        $categorias = DB::table('categories')
+            ->select('categories.*')
+            ->get();
+        return view('categoria.index', ['categorias' => $categorias]);
     }
 
     /**
