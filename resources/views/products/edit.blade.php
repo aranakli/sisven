@@ -24,7 +24,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                    <form method="POST" action="{{ route('products.update', ['product' => $product->id]) }}">
+                    <form method="POST" action="{{ route('products.edit', ['product' => $product->id]) }}">
 
                     @method('PUT')
                             @csrf
@@ -45,7 +45,7 @@
                                 <input type="text" class="form-control" id="category_id" name="category_id" required value="{{ $product->category_id }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
-                            <a href="{{ route('inde.index') }}" class="btn btn-warning">Cancel</a>
+                            <a href="{{ route('products.index') }}" class="btn btn-warning">Cancel</a>
                         </form>
                     </div>
                 </div>

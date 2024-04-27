@@ -27,7 +27,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Stock</th>
-                                    <th scope="col">Category ID</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
@@ -38,7 +38,7 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->stock }}</td>
-                                    <td>{{ $product->category_id }}</td>
+                                    <td>{{ $product->category_id }}</td> <!-- traer nombre de la categoria -->
                                     <td>
                                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline-block;">

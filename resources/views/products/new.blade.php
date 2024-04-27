@@ -25,8 +25,13 @@
                 <input type="text" class="form-control" id="stock" name="stock">
             </div>
             <div class="mb-3">
-                <label for="category_id" class="form-label">Category ID</label>
-                <input type="text" class="form-control" id="category_id" name="category_id">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-select" id="category_id" name="category_id">
+                    <option value="">Select Category</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
