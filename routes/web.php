@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymodeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,13 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])->nam
     Route::delete('/categories/{categorie}', [CategorieController::class, 'destroy'])->name('categories.destroy');
     Route::put('/categories/{categorie}', [CategorieController::class, 'update'])->name('categories.update');
     Route::get('/categories/{categorie}/edit', [CategorieController::class, 'edit'])->name('categories.edit');
+    // Rutas de paymode
+    Route::get('/paymode', [PaymodeController::class, 'index'])->name('paymode.index');
+    Route::post('/paymode', [PaymodeController::class, 'store'])->name('paymode.store');
+    Route::get('/paymode/create', [PaymodeController::class, 'create'])->name('paymode.create');
+    Route::delete('/paymode/{categorie}', [PaymodeController::class, 'destroy'])->name('paymode.destroy');
+    Route::put('/paymode/{categorie}', [PaymodeController::class, 'update'])->name('paymode.update');
+    Route::get('/paymode/{categorie}/edit', [PaymodeController::class, 'edit'])->name('paymode.edit');
 });
 
 require __DIR__ . '/auth.php';
