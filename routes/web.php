@@ -48,9 +48,9 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])->nam
     Route::get('/paymode', [PaymodeController::class, 'index'])->name('paymode.index');
     Route::post('/paymode', [PaymodeController::class, 'store'])->name('paymode.store');
     Route::get('/paymode/create', [PaymodeController::class, 'create'])->name('paymode.create');
-    Route::delete('/paymode/{categorie}', [PaymodeController::class, 'destroy'])->name('paymode.destroy');
-    Route::put('/paymode/{categorie}', [PaymodeController::class, 'update'])->name('paymode.update');
-    Route::get('/paymode/{categorie}/edit', [PaymodeController::class, 'edit'])->name('paymode.edit');
+    Route::delete('/paymode/{pay_mode}', [PaymodeController::class, 'destroy'])->name('paymode.destroy');
+    Route::put('/paymode/{pay_mode}', [PaymodeController::class, 'update'])->name('paymode.update');
+    Route::get('/paymode/{pay_mode}/edit', [PaymodeController::class, 'edit'])->name('paymode.edit');
 });
 
 require __DIR__ . '/auth.php';

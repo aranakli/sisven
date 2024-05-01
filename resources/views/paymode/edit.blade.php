@@ -17,29 +17,29 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Customers') }}
+                {{ __('Paymodes') }}
             </h2>
         </x-slot>
         <div class="container">
             <h1>Edit Paymode</h1>
-            <form method="POST" action="{{ route('paymode.update', ['pay_mode' => $pay_mode->id]) }}">
+            <form method="POST" action="{{ route('paymode.update', ['pay_mode' => $paymode->id]) }}">
                 @method('put')
                 @csrf
                 <div class="mb-3">
                     <label for="codigo" class="form-label">Code</label>
                     <input type="text" class="form-control" id="id" aria-describedby="codigoHelp"
-                        name="id" disabled="disabled" value="{{ $pay_mode->id }}">
+                        name="id" disabled="disabled" value="{{ $paymode->id }}">
                     <div id="codigoHelp" class="form-text">Code Paymode</div>
                 </div>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Name</label>
                     <input type="text" required class="form-control" id="nombre" name="nombre"
-                        placeholder="Name" value="{{ $pay_mode->name }}">
+                        placeholder="Name" value="{{ $paymode->name }}">
                 </div>
                 <div class="mb-3">
                     <label for="observacion" class="form-label">Observation</label>
                     <input type="text" required class="form-control" id="observacion" name="observacion"
-                        placeholder="Observation" value="{{ $pay_mode->observation }}">
+                        placeholder="Observation" value="{{ $paymode->observation }}">
                 </div>
 
 

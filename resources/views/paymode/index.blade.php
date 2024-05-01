@@ -41,7 +41,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($paymode as $pay_mode)
+                                    @foreach ($pay_mode as $pay_mode)
                                         <tr>
                                             <th scope="row">{{ $pay_mode->id }}</th>
                                             <td>{{ $pay_mode->name }}</td>
