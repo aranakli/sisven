@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\api\ProductController;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\api\PaymodeController;
 use App\Http\Controllers\api\CustomerController;
@@ -12,10 +11,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/products',[ProductController::class, 'index']) ->name('products');
-
-
-Route::get('/products',[ProductController::class, 'index']) ->name('products');
-
 
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
