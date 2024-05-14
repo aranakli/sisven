@@ -10,14 +10,23 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/products',[ProductController::class, 'index']) ->name('products');
 
+//rutas de productos
+Route::get('/products',[ProductController::class, 'index']) ->name('products');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+//rutas de customers
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
 Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
 Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
 
+
+//rutas paymode
 Route::get('/paymode', [PaymodeController::class, 'index'])->name('paymode');
 Route::post('/paymode', [PaymodeController::class, 'store'])->name('paymode.store');
 Route::delete('/paymode/{pay_mode}', [PaymodeController::class, 'destroy'])->name('paymode.destroy');
