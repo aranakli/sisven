@@ -46,9 +46,6 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customer::find($id);
-        if (is_null($customer)){
-            return abort(404);
-        }
         return json_encode(['customer' => $customer]);
     }
 
@@ -58,9 +55,6 @@ class CustomerController extends Controller
     public function update(Request $request, string $id)
     {
         $customer = Customer::find($id);
-        if (is_null($customer)){
-            return abort(404);
-        }
         $customer->document_number = $request->document;
         $customer->first_name = $request->firstname;
         $customer->last_name = $request->lastname;
@@ -81,9 +75,6 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         $customer = Customer::find($id);
-        if (is_null($customer)){
-            return abort(404);
-        }
             $customer->delete();
 
             $customers = DB::table('customers')

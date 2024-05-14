@@ -40,9 +40,6 @@ class PaymodeController extends Controller
     public function show(string $id)
     {
         $paymode = Paymode::find($id);
-        if (is_null($paymode)){
-            return abort(404);
-        }
         return json_encode(['paymode' => $paymode]);
     }
 
@@ -52,9 +49,6 @@ class PaymodeController extends Controller
     public function update(Request $request, string $id)
     {
         $paymode = Paymode::find($id);
-        if (is_null($paymode)){
-            return abort(404);
-        }
         $paymode->name = $request->nombre;
         $paymode->observation = $request->observacion;
         $paymode->save();
@@ -70,9 +64,6 @@ class PaymodeController extends Controller
     public function destroy(string $id)
     {
         $paymode = Paymode::find($id);
-        if (is_null($paymode)){
-            return abort(404);
-        }
             $paymode->delete();
 
             $pay_mode = DB::table('pay_mode')
