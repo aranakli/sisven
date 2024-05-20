@@ -29,13 +29,14 @@ class CategorieController extends Controller
         $categorie->name = $request->name;
         $categorie->description = $request->description;
         $categorie->save();
+
         return json_encode(['categorie' => $categorie]);
     }
 
     /**
      * Display the specified resource categorie.
      */
-    public function show(string $id)
+    public function show( $id)
     {
         $categorie = Categorie::find($id);
         return json_encode(['categorie' => $categorie]);
@@ -44,7 +45,7 @@ class CategorieController extends Controller
     /**
      * Update the specified resource in storage categorie.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,  $id)
     {
         $categorie = Categorie::find($id);
         $categorie->name = $request->name;
@@ -56,7 +57,7 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage categories.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
         $categorie = Categorie::find($id);
         $categorie->delete();
