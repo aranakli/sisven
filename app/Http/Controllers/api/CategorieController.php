@@ -7,7 +7,7 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CategorieControler extends Controller
+class CategorieController extends Controller
 {
     /**
      * Display a listing of the resource categories.
@@ -26,8 +26,8 @@ class CategorieControler extends Controller
     public function store(Request $request)
     {
         $categorie = new Categorie();
-        $categorie->comu_nomb = $request->comu_nomb;
-        $categorie->muni_codi = $request->muni_codi;
+        $categorie->name = $request->name;
+        $categorie->description = $request->description;
         $categorie->save();
         return json_encode(['categorie' => $categorie]);
     }
@@ -63,6 +63,6 @@ class CategorieControler extends Controller
         $categories = DB::table('categories')
             ->select('categories.*')
             ->get();
-        return json_encode(['categories' => $categories]);
+        return json_encode(['categories' => $categories, 'success' => true]);
     }
 }
