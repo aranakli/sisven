@@ -11,12 +11,4 @@ class Customer extends Model
     protected $table = 'customers';
     protected $primaryKey = 'id';
     public $timestamps = false;
-
-    protected function casts(): array
-    {
-        return[
-            'email'=>'string', 'first_name'=>'string',
-            'last_name'=>'string', 'address'=>'string',
-    ];
-    }
 }

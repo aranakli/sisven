@@ -28,12 +28,12 @@ Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name
 Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
 
 
-//rutas paymode
-Route::get('/paymode', [PaymodeController::class, 'index'])->name('paymode');
-Route::post('/paymode', [PaymodeController::class, 'store'])->name('paymode.store');
-Route::delete('/paymode/{pay_mode}', [PaymodeController::class, 'destroy'])->name('paymode.destroy');
-Route::put('/paymode/{pay_mode}', [PaymodeController::class, 'update'])->name('paymode.update');
-Route::get('/paymode/{pay_mode}', [PaymodeController::class, 'show'])->name('paymode.show');
+//rutas pay_modes
+Route::get('/pay_modes', [PaymodeController::class, 'index'])->name('pay_modes');
+Route::post('/pay_modes', [PaymodeController::class, 'store'])->name('pay_modes.store');
+Route::delete('/pay_modes/{pay_mode}', [PaymodeController::class, 'destroy'])->name('pay_modes.destroy');
+Route::put('/pay_modes/{pay_mode}', [PaymodeController::class, 'update'])->name('pay_modes.update');
+Route::get('/pay_modes/{pay_mode}', [PaymodeController::class, 'show'])->name('pay_modes.show');
 
 //rutas de categories
 Route::get('/categories', [CategorieController::class, 'index'])->name('categories');

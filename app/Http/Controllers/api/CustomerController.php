@@ -34,11 +34,7 @@ class CustomerController extends Controller
         $customer->phone_number = $request->phone_number;
         $customer->email = $request->email;
         $customer->save();
-
-        $customers = DB::table('customers')
-            ->select('customers.*')
-            ->get();
-        return json_encode(['customers' => $customers]);
+        return json_encode(['customer' => $customer]);
     }
 
     /**
@@ -64,10 +60,7 @@ class CustomerController extends Controller
         $customer->phone_number = $request->phone_number;
         $customer->email = $request->email;
         $customer->save();
-        $customers = DB::table('customers')
-            ->select('customers.*')
-            ->get();
-        return json_encode(['customers' => $customers]);
+        return json_encode(['customer' => $customer]);
     }
 
     /**

@@ -14,10 +14,10 @@ class PaymodeController extends Controller
      */
     public function index()
     {
-        $pay_mode = DB::table('pay_mode')
+        $pay_modes = DB::table('pay_mode')
             ->select('pay_mode.*')
             ->get();
-        return json_encode(['pay_mode' => $pay_mode]);
+        return json_encode(['pay_modes' => $pay_modes]);
     }
 
     /**
@@ -25,10 +25,10 @@ class PaymodeController extends Controller
      */
     public function store(Request $request)
     {
-        $paymode = new Paymode();
-        $paymode->name = $request->nombre;
-        $paymode->observation = $request->observacion;
-        $paymode->save();
+        $pay_mode = new Paymode();
+        $pay_mode->name = $request->name;
+        $pay_mode->observation = $request->observation;
+        $pay_mode->save();
 
         $pay_mode = DB::table('pay_mode')
             ->select('pay_mode.*')
@@ -41,8 +41,8 @@ class PaymodeController extends Controller
      */
     public function show($id)
     {
-        $paymode = Paymode::find($id);
-        return json_encode(['paymode' => $paymode]);
+        $pay_mode = Paymode::find($id);
+        return json_encode(['pay_mode' => $pay_mode]);
     }
 
     /**
@@ -50,10 +50,10 @@ class PaymodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $paymode = Paymode::find($id);
-        $paymode->name = $request->nombre;
-        $paymode->observation = $request->observacion;
-        $paymode->save();
+        $pay_mode = Paymode::find($id);
+        $pay_mode->name = $request->name;
+        $pay_mode->observation = $request->observation;
+        $pay_mode->save();
         $pay_mode = DB::table('pay_mode')
             ->select('pay_mode.*')
             ->get();
@@ -65,12 +65,12 @@ class PaymodeController extends Controller
      */
     public function destroy($id)
     {
-        $paymode = Paymode::find($id);
-            $paymode->delete();
+        $pay_mode = Paymode::find($id);
+            $pay_mode->delete();
 
-            $pay_mode = DB::table('pay_mode')
+            $pay_modes = DB::table('pay_mode')
                 ->select('pay_mode.*')
                 ->get();
-            return json_encode(['pay_mode' => $pay_mode, 'success' => true]);
+            return json_encode(['pay_modes' => $pay_modes, 'success' => true]);
     }
 }
