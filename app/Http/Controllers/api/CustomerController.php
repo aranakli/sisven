@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Customer;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -25,12 +26,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = new Customer();
-        $customer->document_number = $request->document;
-        $customer->first_name = $request->firstname;
-        $customer->last_name = $request->lastname;
+        $customer->document_number = $request->document_number;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
         $customer->address = $request->address;
         $customer->birthdate = $request->birthdate;
-        $customer->phone_number = $request->phone;
+        $customer->phone_number = $request->phone_number;
         $customer->email = $request->email;
         $customer->save();
 
@@ -43,7 +44,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $customer = Customer::find($id);
         return json_encode(['customer' => $customer]);
@@ -52,15 +53,15 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $customer = Customer::find($id);
-        $customer->document_number = $request->document;
-        $customer->first_name = $request->firstname;
-        $customer->last_name = $request->lastname;
+        $customer->document_number = $request->document_number;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
         $customer->address = $request->address;
         $customer->birthdate = $request->birthdate;
-        $customer->phone_number = $request->phone;
+        $customer->phone_number = $request->phone_number;
         $customer->email = $request->email;
         $customer->save();
         $customers = DB::table('customers')
@@ -72,7 +73,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $customer = Customer::find($id);
             $customer->delete();

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Paymode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaymodeController extends Controller
 {
@@ -37,7 +39,7 @@ class PaymodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $paymode = Paymode::find($id);
         return json_encode(['paymode' => $paymode]);
@@ -46,7 +48,7 @@ class PaymodeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $paymode = Paymode::find($id);
         $paymode->name = $request->nombre;
@@ -61,7 +63,7 @@ class PaymodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $paymode = Paymode::find($id);
             $paymode->delete();
