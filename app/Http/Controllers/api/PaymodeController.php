@@ -71,6 +71,6 @@ class PaymodeController extends Controller
             $pay_mode = DB::table('pay_mode')
                 ->select('pay_mode.*')
                 ->get();
-            return json_encode(['pay_mode' => $pay_mode]);
+            return json_encode(['pay_mode' => $pay_mode, 'success' => true]);
     }
 }

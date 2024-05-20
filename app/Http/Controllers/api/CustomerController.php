@@ -81,6 +81,6 @@ class CustomerController extends Controller
             $customers = DB::table('customers')
                 ->select('customers.*')
                 ->get();
-            return json_encode(['customers' => $customers]);
+            return json_encode(['customers' => $customers, 'success' => true]);
     }
 }
