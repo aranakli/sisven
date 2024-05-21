@@ -12,4 +12,8 @@ class Product extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

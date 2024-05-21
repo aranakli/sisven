@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Categorie; 
+use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -16,12 +16,13 @@ class ProductController extends Controller
     public function index()
     {
         $products = DB::table('products')
-        ->join('categories', 'category_id', '=', 'categories.id')
-        ->select('products.*', 'categories.name')
-        ->get();
-
-        return json_encode(['products'=>$products,'categories' => $categories]);
-
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.name as category_name')
+            ->get();
+    
+        $categories = DB::table('categories')->get();
+    
+        return response()->json(['products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -36,13 +37,10 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
-        $products = DB::table('products')
-        ->join('categories', 'category_id', '=', 'categories.id')
-        ->select('products.*', 'categories.name')
-        ->get();
+        $products = $this->getProducts();
+        $categories = $this->getCategories();
 
-        return json_encode(['products'=>$products,'categories' => $categories]);
-
+        return json_encode(['products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -50,34 +48,30 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product= Product::find($id);
-        $categories = DB::table('categories')
-        ->orderBy('name')
-        ->get();
+        $product = Product::find($id);
+        $categories = $this->getCategories();
 
-        return json_encode(['products'=>$products,'categories' => $categories]);
-
+        return json_encode(['product' => $product, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $product= Product::find($id);
-       
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->stock = $request->stock;
-        $product->category_id = $request->category_id;
-        $product->save();
-        $products = DB::table('products')
-        ->join('categories', 'category_id', '=', 'categories.id')
-        ->select('products.*', 'categories.name')
-        ->get();
+{
+    $product = Product::find($id);
 
-        return json_encode(['products'=>$products,'categories' => $categories]);
+    if (!$product) {
+        return response()->json(['message' => 'Product not found'], 404);
+    }
 
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->stock = $request->stock;
+    $product->category_id = $request->category_id;
+    $product->save();
+
+    return response()->json(['message' => 'Product updated successfully', 'product' => $product], 200);
     }
 
     /**
@@ -85,13 +79,31 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product= Product::find($id);
+        $product = Product::find($id);
         $product->delete();
 
-        $products = DB::table('products')
-            ->join('categories', 'category_id', '=', 'categories.id')
-            ->select('products.*', 'categories.name')
+        $products = $this->getProducts();
+        $categories = $this->getCategories();
+
+        return json_encode(['products' => $products, 'categories' => $categories, 'success' => true]);
+    }
+
+    /**
+     * Retrieve all products from the database.
+     */
+    private function getProducts()
+    {
+        return DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.name as category_name')
             ->get();
-            return json_encode(['products'=>$products,'categories' => $categories, 'success' => true]);
-        }
+    }
+
+    /**
+     * Retrieve all categories from the database.
+     */
+    private function getCategories()
+    {
+        return DB::table('categories')->get();
+    }
 }
